@@ -4,9 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -14,11 +15,16 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     ViewPager2 pager;
+    public static Context contextMain;
+
+    String selectedItemTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        contextMain = this;
 
         PagerAdapter adapter = new PagerAdapter(this);
         pager = findViewById(R.id.pager);
@@ -56,5 +62,15 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    public void goItemPage(){
+        Intent intent = new Intent(getApplicationContext(), DetailItemPage.class);
+        startActivity(intent);
+    }
+    public void setItemTitle(String title){
+        selectedItemTitle = title;
+    }
+    public String getItemTitle(){
+        return selectedItemTitle;
     }
 }

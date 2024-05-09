@@ -13,7 +13,9 @@ public class PagerAdapter extends FragmentStateAdapter {
         super(fragmentActivity);
     }
     public void addItem(Fragment fragment){
+
         items.add(fragment);
+        notifyItemInserted(items.size()-1);
     }
 
     @Override
